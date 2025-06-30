@@ -1,0 +1,18 @@
+<ul class="navbar-nav ms-auto">
+    {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+          👤 {{ user.username }}
+        </a>
+        <h1>ESSSADAQUI É A INDEX</h1>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Sair</button>
+          </form>
+      </li>
+    {% else %}
+      <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Entrar</a></li>
+      <li class="nav-item"><a class="nav-link" href="{% url 'registro' %}">Registrar</a></li>
+    {% endif %}
+  </ul>
+  

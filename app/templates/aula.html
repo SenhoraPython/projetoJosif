@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>{{ aula.titulo }}</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+<body>
+
+<div class="container mt-4">
+  <h2>{{ aula.titulo }}</h2>
+  <p>{{ aula.descricao }}</p>
+
+  <div class="ratio ratio-16x9 mb-4">
+    <iframe src="{{ aula.video_aula }}" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <h4>Comentários</h4>
+  <ul class="list-group mb-3">
+    {% for comentario in comentarios %}
+      <li class="list-group-item">
+        <strong>{{ comentario.pessoa.nome }}</strong> ({{ comentario.data|date:"d/m/Y H:i" }})<br>
+        {{ comentario.texto }}
+      </li>
+    {% empty %}
+      <li class="list-group-item">Nenhum comentário ainda.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Enviar Comentário</button>
+  </form>
+  {% else %}
+  <p><a href="{% url 'login' %}">Entre</a> para comentar.</p>
+  {% endif %}
+</div>
+
+<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
