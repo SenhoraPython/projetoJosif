@@ -25,18 +25,12 @@ class PerfilUsuario(models.Model):
 
 class Pessoa(models.Model):
     nome = models.CharField(max_length=100)
-    cpf = models.CharField(max_length=14, unique=True)
+    cpf = models.CharField(max_length=14, null=True, blank=True)  # <-- aqui
     data_nasc = models.DateField(verbose_name="Data de Nascimento")
     email = models.EmailField(unique=True)
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     perfil = models.ForeignKey(PerfilUsuario, on_delete=models.SET_NULL, null=True)
 
-    def __str__(self):
-        return self.nome
-
-    class Meta:
-        verbose_name = "Pessoa"
-        verbose_name_plural = "Pessoas"
 
 
 class Aula(models.Model):

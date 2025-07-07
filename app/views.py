@@ -92,23 +92,22 @@ class ComentarioCreateView(CreateView):
     template_name = "form.html"
     success_url = reverse_lazy('comentario-list')
 
+
 class RegistroView(CreateView):
     form_class = RegistroUsuarioForm
     template_name = 'registro.html'
     success_url = reverse_lazy('login')
 
     def form_valid(self, form):
-        # Salva o usuário
         response = super().form_valid(form)
         user = self.object
-        # Cria a Pessoa associada
+
         Pessoa.objects.create(
             nome=form.cleaned_data['nome'],
             email=user.email,
-            cpf='000.000.000-00',  # Pode ser opcional ou editado depois
-            data_nasc='2000-01-01',  # Pode adicionar no formulário depois
+            data_nasc=form.cleaned_data.get('data_nasc'),  # agora pode ser opcional
             cidade=form.cleaned_data['cidade'],
-            perfil=form.cleaned_data['perfil'],
+            perfil=form.cleaned_data.get('perfil'),  # também pode ser opcional
+            cpf=form.cleaned_data.get['cpf']
         )
         return response
-

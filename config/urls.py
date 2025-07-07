@@ -19,9 +19,15 @@ from django.urls import  include,path
 from app.views import *
 from django.contrib.auth.views import LoginView, LogoutView
 
+
 urlpatterns = [
     path('', index, name='index'),
     path('admin/', admin.site.urls),
+    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('logout/', LogoutView.as_view(next_page='/'), name='logout'),
+    path('registrar/', RegistroView.as_view(), name='registro'),
+
+
     path('pessoas/', PessoaListView.as_view(), name='pessoa-list'),
     path('pessoas/novo/', PessoaCreateView.as_view(), name='pessoa-create'),
     path('pessoas/<int:pk>/editar/', PessoaUpdateView.as_view(), name='pessoa-update'),
@@ -39,7 +45,5 @@ urlpatterns = [
 
     path('comentarios/', ComentarioListView.as_view(), name='comentario-list'),
     path('comentarios/novo/', ComentarioCreateView.as_view(), name='comentario-create'),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', LogoutView.as_view(next_page='index.html'), name='logout'),
-    path('registrar/', RegistroView.as_view(), name='registro'),
+    
 ]

@@ -4,25 +4,73 @@
 <head>
   <meta charset="UTF-8">
   <title>Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body class="bg-light">
+  <style>
+    body {
+      background-color: #f2f2f2;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-4">
-      <div class="card shadow-lg">
-        <div class="card-body">
-          <h4 class="card-title text-center mb-4">Entrar</h4>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success w-100">Entrar</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
+    .login-box {
+      background-color: white;
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-box h4 {
+      text-align: center;
+      font-weight: bold;
+      color: #2c2c2c;
+      margin-bottom: 24px;
+    }
+
+    .btn-login {
+      background-color: #57a99a;
+      color: white;
+      border: none;
+      font-weight: bold;
+      font-size: 1.5rem;
+      border-radius: 10%;
+      padding: 5px;
+      display: block;
+      margin: 20px auto 0 auto;
+      
+    }
+
+    .btn-login:hover {
+      background-color: #449b8d;
+    }
+
+    input[type="text"],
+    input[type="password"],
+    input[type="email"],
+    select,
+    textarea {
+      border-radius: 6px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-box">
+  <h4>Entrar</h4>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-login px-5 d-block mx-auto">Entrar</button>
+  </form>
 </div>
 
 <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
