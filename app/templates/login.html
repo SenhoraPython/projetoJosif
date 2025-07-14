@@ -102,6 +102,44 @@
   </style>
 </head>
 <body>
+  <nav>
+    <!-- Logo esquerda -->
+    <div class="nav-logo" tabindex="0" role="link" aria-label="Libras Infantil">
+      <!-- Use seu próprio logo ou substitua por texto -->
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path d="M12 0L15.09 8H24L17.45 13L20.54 21L12 16L3.46 21L6.55 13L0 8H8.91L12 0Z"/>
+      </svg>
+      Libras Infantil
+    </div>
+
+    <!-- Menu central -->
+    <ul class="nav-menu" role="menubar">
+      <li role="none"><a href="#materiais" role="menuitem" tabindex="0">Materiais</a></li>
+      <li role="none"><a href="#Jogos" role="menuitem" tabindex="0">Jogos</a></li>
+      <li role="none"><a href="#Sobre-Nos" role="menuitem" tabindex="0">Sobre nós</a></li>
+      <li role="none"><a href="#" role="menuitem" tabindex="0">Contruibua</a></li>
+    </ul>
+
+    <ul class="nav-right" style="  list-style: none;
+    text-decoration: none;">
+      {% if user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <svg class="user-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img">
+              <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zM4.8 21.6c0-2.9 2.4-5.4 7.2-5.4s7.2 2.5 7.2 5.4v1.2H4.8v-1.2z"/>
+            </svg> {{ user.username }}
+          </a>
+          <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="btn-sair">Sair</button>
+            </form>
+        </li>
+      {% else %}
+        <li class="lista" ><a class="btn btn-outline" href="{% url 'login' %}">Entrar</a></li>
+        <li class="lista"><a class="btn btn-outline"  href="{% url 'registro' %}">Registrar</a></li>
+      {% endif %}
+    </ul>
+  </nav>
   <div class="login-box">
     <h4>Entrar</h4>
     <form method="post">

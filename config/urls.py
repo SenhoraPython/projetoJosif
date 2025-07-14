@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import  include,path
 from app.views import *
 from django.contrib.auth.views import LoginView, LogoutView
-
+from django.views.generic import TemplateView
 
 urlpatterns = [
     path('', index, name='index'),
@@ -47,5 +47,6 @@ urlpatterns = [
     path('comentarios/novo/', ComentarioCreateView.as_view(), name='comentario-create'),
 
     #path('contribua/', views.contribua, name='contribua'),
+    path('jogo/', TemplateView.as_view(template_name='jogo_memoria.html'), name='jogo-memoria')
     
 ]

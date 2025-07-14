@@ -1,0 +1,156 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Jogo da Memória - Libras</title>
+  <link rel="stylesheet" href="{% static 'css/memoria.css' %}">
+  <link rel="stylesheet" href="{% static 'css/cabecario.css' %}">
+  <script defer src="{% static 'js/memoria.js' %}"></script>
+</head>
+<style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+  
+    nav {
+      background-color: #ffb347; /* laranja suave */
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      height: 60px;
+      font-size: 15px;
+    }
+  
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 700;
+      color: #6a5acd; /* roxo infantil */
+      cursor: pointer;
+    }
+  
+    .nav-logo svg {
+      width: 28px;
+      height: 28px;
+      fill: #6a5acd;
+    }
+  
+    .nav-menu {
+      display: flex;
+      gap: 20px;
+      list-style: none;
+    }
+  
+    .nav-menu li a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 10px;
+      transition: background-color 0.3s;
+      border-radius: 6px;
+      font-weight: bold;
+      background-color: #f08080; /* rosa claro */
+    }
+  
+    .nav-menu li a:hover {
+      background-color: #ff69b4; /* rosa vibrante */
+      color: white;
+    }
+  
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .nav-link {
+      color: white;
+      padding: 5px;
+      
+    }
+    .nav-item{
+      display: flex;
+    
+    }
+    footer {
+            background-color: #ffb347;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+        .game-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.game-board {
+  display: grid;
+  grid-template-columns: repeat(4, 120px);
+  gap: 12px;
+  padding: 20px;
+  background-color: #fff6ec;
+  border: none;
+  border-radius: 20px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+</style>
+<body>
+    <nav>
+        <!-- Logo esquerda -->
+        <div class="nav-logo" tabindex="0" role="link" aria-label="Libras Infantil">
+          <!-- Use seu próprio logo ou substitua por texto -->
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path d="M12 0L15.09 8H24L17.45 13L20.54 21L12 16L3.46 21L6.55 13L0 8H8.91L12 0Z"/>
+          </svg>
+          Libras Infantil
+        </div>
+    
+        <!-- Menu central -->
+        <ul class="nav-menu" role="menubar">
+          <li role="none"><a href="#materiais" role="menuitem" tabindex="0">Materiais</a></li>
+          <li role="none"><a href="#Jogos" role="menuitem" tabindex="0">Jogos</a></li>
+          <li role="none"><a href="#Sobre-Nos" role="menuitem" tabindex="0">Sobre nós</a></li>
+          <li role="none"><a href="#" role="menuitem" tabindex="0">Contruibua</a></li>
+        </ul>
+    
+        <ul class="nav-right" style="  list-style: none;
+        text-decoration: none;">
+          {% if user.is_authenticated %}
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+                <svg class="user-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false" role="img">
+                  <path d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zM4.8 21.6c0-2.9 2.4-5.4 7.2-5.4s7.2 2.5 7.2 5.4v1.2H4.8v-1.2z"/>
+                </svg> {{ user.username }}
+              </a>
+              <form method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-sair">Sair</button>
+                </form>
+            </li>
+          {% else %}
+            <li class="lista" ><a class="btn btn-outline" href="{% url 'login' %}">Entrar</a></li>
+            <li class="lista"><a class="btn btn-outline"  href="{% url 'registro' %}">Registrar</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    
+  <h1 style="text-align: center; margin-top: 20px;">Jogo da Memória: Alfabeto em Libras (A–D)</h1>
+
+  <div class="game-container">
+    <div class="game-board" id="game-board"></div>
+  </div>
+  
+</body>
+<footer>
+    <p>&copy; 2025 Libras Infantil | Desenvolvido com ♥ por estudantes do IFSULDEMINAS</p>
+  </footer>
+</html>

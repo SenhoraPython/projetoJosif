@@ -111,3 +111,7 @@ class RegistroView(CreateView):
             cpf=form.cleaned_data.get['cpf']
         )
         return response
+    
+# def jogo_memoria(request):
+#     return render(request, 'jogo_memoria.html')
+

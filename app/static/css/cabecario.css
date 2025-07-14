@@ -1,0 +1,139 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+  }
+
+  nav {
+    background-color: #ffb347; /* laranja suave */
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    height: 60px;
+    font-size: 15px;
+  }
+
+  .nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 700;
+    color: #6a5acd; /* roxo infantil */
+    cursor: pointer;
+  }
+
+  .nav-logo svg {
+    width: 28px;
+    height: 28px;
+    fill: #6a5acd;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+  }
+
+  .nav-menu li a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 10px;
+    transition: background-color 0.3s;
+    border-radius: 6px;
+    font-weight: bold;
+    background-color: #f08080; /* rosa claro */
+  }
+
+  .nav-menu li a:hover {
+    background-color: #ff69b4; /* rosa vibrante */
+    color: white;
+  }
+
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-link {
+    color: white;
+    padding: 5px;
+    
+  }
+
+  .user-icon {
+    width: 26px;
+    height: 26px;
+    fill: white;
+    cursor: pointer;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+  }
+
+  .user-icon:hover {
+    opacity: 1;
+  }
+
+  .btn {
+    border: none;
+    padding: 6px 12px;
+    font-weight: bold;
+    font-size: 13px;
+    background-color: #87ceeb; /* azul claro */
+    color: #000;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    text-decoration: none;
+  }
+
+  .btn:hover {
+    background-color: #00bfff;
+    color: white;
+  }
+
+  .btn-outline {
+    background-color: #ffccff; /* lilás */
+    color: #8b008b; /* roxo escuro */
+  }
+
+  .btn-outline:hover {
+    background-color: #da70d6; /* orquídea */
+    color: white;
+  }
+
+  .btn-sair {
+    border: none;
+    padding: 6px 14px;
+    font-weight: bold;
+    font-size: 12px;
+    background-color: #ff6f61; /* vermelho coral */
+    color: white;
+    border-radius: 6px;
+    text-transform: uppercase;
+    transition: all 0.3s;
+    text-decoration: none;
+    margin: 10px;
+  }
+
+  .btn-sair:hover {
+    background-color: #dc143c;
+  }
+
+  .dropdown-toggle:hover {
+    background-color: #f0e68c;
+  }
+  .nav-item{
+    display: flex;
+  
+  }
+  
+  footer {
+          background-color: #ffb347;
+          color: #fff;
+          padding: 20px;
+          text-align: center;
+      }
