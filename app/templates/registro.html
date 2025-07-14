@@ -1,33 +1,152 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
   <meta charset="UTF-8">
   <title>Registrar</title>
   <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-</head>
-<body class="bg-light">
+  <style>
+    body {
+      background-color: #feefe3;
+      /* igual ao print */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+    }
 
-<div class="container mt-5">
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <div class="card shadow">
-        <div class="card-body">
-          <h4 class="card-title text-center">Criar Conta</h4>
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success w-100">Registrar</button>
-          </form>
-          <p class="text-center mt-3">
-            Já possui uma conta? <a href="{% url 'login' %}">Entrar</a>
-          </p>
-        </div>
+    .centraliza-container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      border: none;
+      border-top: 8px solid #ff9900;
+      border-radius: 20px;
+      background-color: #fff;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.10);
+      max-width: 420px;
+      width: 100%;
+      padding: 0px 28px 24px 28px;
+      margin: 20px;
+    }
+
+    .card-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: #ff6600;
+      margin-bottom: 20px;
+      margin-top: 25px;
+      text-align: center;
+    }
+
+    form label {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: #444;
+    }
+
+    form input,
+    form select,
+    form textarea {
+      border-radius: 8px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      width: 90%;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
+      background: #faf8f6;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+
+    form input,
+    form select,
+    form label {
+      margin-bottom: 6px;
+     
+    }
+
+    form input:focus,
+    form select:focus,
+    form textarea:focus {
+      border-color: #ff9900;
+      outline: none;
+      width: 90%;
+      box-shadow: 0 0 0 2px rgba(255, 153, 0, 0.15);
+      background: #fffefd;
+
+    }
+
+    .helptext {
+      font-size: 0.92rem;
+      color: #e68a00;
+      margin-bottom: 10px;
+      margin-top: -8px;
+      display: block;
+    }
+
+    .btn-success {
+      background-color: #ff9900;
+      border: none;
+      font-weight: 700;
+      color: white;
+      font-size: 1.15rem;
+      padding: 12px 10px;
+      border-radius: 10px;
+      transition: background 0.3s;
+      display: block;
+      margin: 20px auto 0 auto;
+    }
+
+    .btn-success:hover {
+      background-color: #e68a00;
+    }
+
+    a {
+      color: #ff6600;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .text-center {
+      text-align: center !important;
+    }
+
+    @media (max-width: 576px) {
+      .card {
+        padding: 16px 6px 16px 6px;
+        max-width: 98vw;
+        border-radius: 12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="centraliza-container">
+    <div class="card shadow">
+      <div class="card-body">
+        <h4 class="card-title">Criar Conta</h4>
+        <form method="post" autocomplete="off">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="btn btn-success w-100">Registrar</button>
+        </form>
+        <p class="text-center mt-3 mb-0">
+          Já possui uma conta? <a href="{% url 'login' %}">Entrar</a>
+        </p>
       </div>
     </div>
   </div>
-</div>
-
-<script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
 </body>
+
 </html>
