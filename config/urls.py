@@ -45,5 +45,7 @@ urlpatterns = [
 
     path('comentarios/', ComentarioListView.as_view(), name='comentario-list'),
     path('comentarios/novo/', ComentarioCreateView.as_view(), name='comentario-create'),
+
+    #path('contribua/', views.contribua, name='contribua'),
     
 ]

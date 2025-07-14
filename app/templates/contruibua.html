@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Contribua - Libras Infantil</title>
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <style>
+    body {
+      background-color: #fff6ec;
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+    }
+    h1, h2 {
+      color: #ff66c4;
+      font-weight: bold;
+    }
+    .btn-custom {
+      background-color: #ffa500;
+      color: white;
+      border-radius: 20px;
+    }
+    .section {
+      padding: 40px 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container section text-center">
+    <h1>🌟 Contribua com o Libras Infantil!</h1>
+    <p class="lead mt-3">
+      Ajude a espalhar a Libras desde a infância! Juntos podemos construir um futuro mais inclusivo.
+    </p>
+  </div>
+
+  <div class="container section">
+    <h2 class="text-center mb-4">📝 Envie sua Proposta</h2>
+    <form method="POST" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="btn btn-custom">Enviar Proposta</button>
+    </form>
+  </div>
+
+  <div class="container section text-center">
+    <h2>📣 Compartilhe!</h2>
+    <p>Espalhe a ideia com professores, amigos e familiares. 💛</p>
+  </div>
+
+  <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>
