@@ -47,6 +47,7 @@ urlpatterns = [
     path('comentarios/novo/', ComentarioCreateView.as_view(), name='comentario-create'),
 
     #path('contribua/', views.contribua, name='contribua'),
-    path('jogo/', TemplateView.as_view(template_name='jogo_memoria.html'), name='jogo-memoria')
+    path('jogo/', TemplateView.as_view(template_name='jogo_memoria.html'), name='jogo-memoria'),
+    path('quiz/', quiz_view, name='quiz'),
     
 ]

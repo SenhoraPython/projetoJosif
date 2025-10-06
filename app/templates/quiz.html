@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz — Exemplo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .questao { display: none; }
+    .questao.active { display: block; }
+    .alternativa { cursor: pointer; }
+    .img-sinal { max-width: 240px; max-height: 180px; object-fit: contain; margin-bottom: 10px; }
+  </style>
+</head>
+<body class="bg-light">
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title">Quiz de Exemplo</h3>
+          <p class="text-muted">Responda as perguntas abaixo:</p>
+
+          <div id="progressoWrap" class="mb-3">
+            <div class="progress" style="height: 14px;">
+              <div id="progressoBar" class="progress-bar" role="progressbar" style="width: 0%"></div>
+            </div>
+            <small class="text-muted mt-1 d-block" id="progressoTxt">Questão 0 de 0</small>
+          </div>
+
+          <form id="quizForm">
+
+            <!-- ===================== PERGUNTAS ===================== -->
+            <article class="questao p-3" data-correta="a">
+              <h5>Q1. Qual é o sinal da palavra "amor" em Libras?</h5>
+              <div class="list-group">
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_1" value="a" class="form-check-input me-2">
+                  <img src="https://i.pinimg.com/736x/9c/d5/d6/9cd5d6b641f27a920d5a3410f70efd40.jpg" class="img-sinal" alt="Sinal amor">
+                </label>
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_1" value="b" class="form-check-input me-2">
+                  <img src="https://www.icom.app/wp-content/uploads/2025/04/Acessibilidade_2.jpg" class="img-sinal" alt="Sinal amor">
+                </label>
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_1" value="c" class="form-check-input me-2">
+                  <img src="https://sistemas.cead.ufv.br/capes/dicionario/wp-content/uploads/2017/08/64.jpg" class="img-sinal" alt="Sinal amor">
+                </label>
+              </div>
+            </article>
+
+            <article class="questao p-3" data-correta="b">
+              <h5>Q2. Qual destas imagens representa a letra "A" em Libras?</h5>
+              <div class="list-group">
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_2" value="a" class="form-check-input me-2">
+                  <img src="https://sistemas.cead.ufv.br/capes/dicionario/wp-content/uploads/2017/08/71.jpg" class="img-sinal" alt="Letra A - Opção A">
+                </label>
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_2" value="b" class="form-check-input me-2">
+                  <img src="https://sistemas.cead.ufv.br/capes/dicionario/wp-content/uploads/2017/08/67.jpg" class="img-sinal" alt="Letra A - Opção B">
+                </label>
+                <label class="list-group-item alternativas alternativa">
+                  <input type="radio" name="resp_2" value="c" class="form-check-input me-2">
+                  <img src="https://sistemas.cead.ufv.br/capes/dicionario/wp-content/uploads/2017/08/74.jpg" class="img-sinal" alt="Letra A - Opção C">
+                </label>
+              </div>
+            </article>
+            <!-- ===================== FIM DAS PERGUNTAS ===================== -->
+
+            <div class="d-flex justify-content-between mt-4">
+              <button type="button" id="btnPrev" class="btn btn-outline-secondary" disabled>Anterior</button>
+              <div>
+                <button type="button" id="btnNext" class="btn btn-primary">Próxima</button>
+                <button type="submit" id="btnSubmit" class="btn btn-success d-none">Enviar</button>
+              </div>
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+      <p class="text-center text-muted mt-3 small">Boa sorte! ✨</p>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+(function(){
+  const perguntas = document.querySelectorAll('.questao');
+  const total = perguntas.length;
+  let index = 0;
+
+  const btnPrev = document.getElementById('btnPrev');
+  const btnNext = document.getElementById('btnNext');
+  const btnSubmit = document.getElementById('btnSubmit');
+  const progressoBar = document.getElementById('progressoBar');
+  const progressoTxt = document.getElementById('progressoTxt');
+
+  function showIndex(i){
+    perguntas.forEach(q => q.classList.remove('active'));
+    if(perguntas[i]) perguntas[i].classList.add('active');
+
+    btnPrev.disabled = (i === 0);
+    if(i === total - 1){
+      btnNext.classList.add('d-none');
+      btnSubmit.classList.remove('d-none');
+    } else {
+      btnNext.classList.remove('d-none');
+      btnSubmit.classList.add('d-none');
+    }
+
+    const percent = Math.round(((i) / Math.max(1, total-1)) * 100);
+    progressoBar.style.width = percent + '%';
+    progressoBar.setAttribute('aria-valuenow', percent);
+    progressoTxt.textContent = `Questão ${i+1} de ${total}`;
+  }
+
+  btnPrev.addEventListener('click', () => { if(index>0){ index--; showIndex(index); } });
+  btnNext.addEventListener('click', () => { if(index<total-1){ index++; showIndex(index); } });
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'ArrowLeft') btnPrev.click();
+    if(e.key === 'ArrowRight') btnNext.click();
+  });
+
+  if(total>0) showIndex(0);
+
+  // --- Cálculo dos acertos ---
+  document.getElementById('quizForm').addEventListener('submit', e => {
+    e.preventDefault();
+
+    let acertos = 0;
+    perguntas.forEach((q, idx) => {
+      const correta = q.getAttribute('data-correta');
+      const marcada = q.querySelector('input[type=radio]:checked');
+      if (marcada && marcada.value === correta) {
+        acertos++;
+      }
+    });
+
+    const msg = `Você acertou ${acertos} de ${total} perguntas!`;
+    alert(msg);
+
+    // Redireciona para a página principal após 3 segundos
+    setTimeout(() => {
+      window.location.href = '/';
+    }, 500);
+  });
+})();
+</script>
+</body>
+</html>

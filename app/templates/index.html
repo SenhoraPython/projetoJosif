@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Navbar estilo OBMEP</title>
+  <title>Libras Infantil</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
     * {
@@ -251,7 +251,7 @@
         <div class="row">
             <div class="col-md-4">
                 <div class="card">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4uPihfDA_pKL5m7EZZSL4FBxpwlCrNOMUeQ&s" class="card-img-top" alt="Alfabeto" style="width: 250px; height: 250px; object-fit: cover; margin-top: 20px; margin-left: 40px;">
+                    <img src="{% static 'img/alfabeto.jpeg' %}" class="card-img-top" alt="Alfabeto" style="width: 250px; height: 250px; object-fit: cover; margin-top: 20px; margin-left: 40px;">
                     <div class="card-body">
                         <h5 class="card-title">Alfabeto em Libras</h5>
                         <p class="card-text">Aprenda todas as letras do alfabeto em Libras com ilustrações divertidas.</p>
@@ -303,7 +303,7 @@
                 <div class="p-4 bg-white border rounded shadow-sm">
                     <h5>Quiz de Sinais</h5>
                     <p>Teste seu conhecimento com perguntas rápidas sobre Libras.</p>
-                    <a href="#" class="btn btn-primary">Começar Quiz</a>
+                    <a href="{% url 'quiz' %}" class="btn btn-primary">Começar Quiz</a>
                 </div>
             </div>
         </div>

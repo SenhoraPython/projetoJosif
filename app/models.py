@@ -31,6 +31,9 @@ class Pessoa(models.Model):
     cidade = models.ForeignKey(Cidade, on_delete=models.CASCADE)
     perfil = models.ForeignKey(PerfilUsuario, on_delete=models.SET_NULL, null=True)
 
+    def __str__(self):
+        return self.nome
+
 
 
 class Aula(models.Model):
@@ -116,6 +119,8 @@ class Comentario(models.Model):
     class Meta:
         verbose_name = "Comentário"
         verbose_name_plural = "Comentários"
+
+        
 
 # class Contribuicao(models.Model):
 #     nome = models.CharField(max_length=100)

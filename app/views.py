@@ -112,6 +112,8 @@ class RegistroView(CreateView):
         )
         return response
     
+def quiz_view(request):
+    return render(request, 'quiz.html')    
 # def jogo_memoria(request):
 #     return render(request, 'jogo_memoria.html')
 
